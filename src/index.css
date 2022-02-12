@@ -11,3 +11,114 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+@font-face {
+  font-family: 'Hitchcut';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("https://res.cloudinary.com/sunqupacha/raw/upload/v1644618162/portafolio/AppCine/fonts/Hitchcut-Regular_wgnki4.ttf") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Glacial Indifference';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("https://res.cloudinary.com/sunqupacha/raw/upload/v1644623372/portafolio/AppCine/fonts/GlacialIndifference-Bold_r9atef.ttf") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Glacial Indifference';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("https://res.cloudinary.com/sunqupacha/raw/upload/v1644623372/portafolio/AppCine/fonts/GlacialIndifference-Regular_qjbigp.ttf") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+:root{
+  --color-primary:rgba(2, 39, 54, .95)  ;
+  --color-secondary:rgba(199, 29, 46, 8)  ;
+  --color-tirth:#46020D;
+  
+  --color-gray-light:#ABAAAA;
+  --color-white-dark:#F8F8F8;
+  
+  --color-white:#F5F5F5;
+
+  --font-primary: 'Hitchcut', sans-serif;
+  --font-secondary: 'Glacial Indifference', sans-serif;
+
+  --leter__spacing--small: 0.1em;
+  --leter__spacing--normal:.3em;
+
+  --font__very-small: .8em;
+  --font__small: 1em;
+  --font__normal: 1.5em;
+  --font__big: 2em;
+  --font__huge: 3em;
+}
+
+*{
+  scroll-behavior: smooth;
+}
+::-webkit-scrollbar {
+  width: 0;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: var(--color-white-dark);
+  font-size: var(--font__very-small);
+  letter-spacing: var(--leter__spacing--small);
+  font-family: var(--font-secondary);
+  font-weight: 500;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: var(--color-white-dark);
+  font-size: var(--font__very-small);
+  letter-spacing: var(--leter__spacing--small);
+  font-family: var(--font-secondary);
+  font-weight: 500;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: var(--color-white-dark);
+  font-size: var(--font__very-small);
+  letter-spacing: var(--leter__spacing--small);
+  font-family: var(--font-secondary);
+  font-weight: 500;
+}
+
+ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+image{
+    object-fit: cover;
+    box-sizing: border-box;
+}
+li{
+    
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+}
+h1, h2, h3, h4, p{
+    margin: 0;
+    padding: 0;
+}
+button{
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+input{
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+}

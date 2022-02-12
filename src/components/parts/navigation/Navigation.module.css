@@ -1,0 +1,93 @@
+
+.navigation{
+    position: fixed;
+    z-index: 40;
+    display: flex;
+    width: 100%;
+    background-color: var(--color-primary);
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    /* padding: .2rem 1.5rem; */
+}
+.navigation.active{
+    background-color: var(--color-white-dark);
+    opacity: .9;
+}
+.navigation.active .btn__navigation .bar{
+    background-color: var(--color-primary);
+}
+
+.navigation.active .logo span{
+    color: var(--color-white-dark);
+}
+.logo{
+    display: flex;
+    width: 20%;
+    z-index: 20;
+    flex-direction: column;
+    align-items: center;
+    padding: .8rem 2.5rem;
+    row-gap: .5rem;
+}
+
+.svg__logo{
+    width: 2em;
+    fill: var(--color-white-dark) ;
+    z-index: 50;
+}
+
+.logo span{
+    font-family: var(--font-primary);    
+    letter-spacing: var(--leter__spacing--normal);
+    font-weight: 700;
+    font-size: var(--font__small);
+    text-transform: uppercase;
+    color: var(--color-white-dark);
+    text-shadow: 0 0 0px #fff, 0 0 0px #fff, 0 0 0px var(--color-secondary), 0 0 10px var(--color-secondary),
+    0 0 20px var(--color-secondary), 0 0 30px var(--color-secondary), 0 0 40px var(--color-secondary);
+}
+.btn__navigation{
+    display: flex;
+    flex-direction: column;
+    width: 2em;
+    height: 2em;
+    justify-content: space-evenly;    
+    padding: .8rem 2.5rem;
+}
+.btn__navigation__active{
+    display: flex;
+    flex-direction: column;
+    width: 2em;
+    height: 2.4em;
+    justify-content: space-evenly;    
+    padding: .8rem 2.5rem;
+}
+.btn__navigation__active .bar:nth-child(1){
+    position: relative;
+    top: 7px;
+    transform: rotate(45deg);
+    transition: all .5s;
+}
+.btn__navigation__active .bar:nth-child(2){
+    opacity: 0;
+    transition: opacity .5s;
+}
+.btn__navigation__active .bar:nth-child(3){
+    position: relative;
+    bottom:  15px;
+    transform: rotate(-45deg);
+    transition: all .5s;
+}
+.bar{
+    width: 100%;
+    height: 3px;
+    border-radius: 50px;
+    background-color: var(--color-white-dark);
+}
+.btn__navigation__active .bar{
+    width: 100%;
+    height: 3px;
+    border-radius: 50px;
+    background-color: var(--color-white-dark);
+}

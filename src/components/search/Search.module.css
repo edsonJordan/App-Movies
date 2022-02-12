@@ -1,0 +1,52 @@
+.Search{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    padding: 20px 0;
+    row-gap: 1.5em;
+}
+.Search h1{
+    font-family: var(--font-secondary);
+    color: var(--color-white);
+}
+.Search__input{
+    position: relative;
+    width: 65%;
+    height: 35px;
+    font-size: 16px;
+    outline: none;
+    background-color: var(--color-white);
+    border-radius: 25px;
+    border: 1px solid var(--color-white);
+}
+.Input{
+    padding: 12px;
+    padding-left: 45px;
+    width: 100%;
+    background-color: rgba(2,39, 54,0.8);
+    border-radius: 25px;
+    height: 100%;
+    font-weight: 500;
+    letter-spacing: var(--leter__spacing--small);
+    font-size: var(--font__small);
+    font-family: var(--font-secondary);
+    color: var(--color-white);
+}
+.Search__input::before{
+    display: block;
+    content: "";
+    position: absolute;
+    top: 20%;
+    left: 12px;
+    width: 22px;
+    height: 22px;
+    background-image: url(https://res.cloudinary.com/sunqupacha/image/upload/v1644631857/portafolio/AppCine/icons/buscar_o90dmw.svg);
+    background-size: 100% 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50%;
+}

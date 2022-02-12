@@ -1,0 +1,128 @@
+
+.Grid{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    align-content: center;
+}
+.GridContent{
+    display: flex;
+    flex-direction: row;
+    column-gap: 1.2rem;
+    padding: .5rem 1.8rem;
+    align-items: center;
+    /* height: 100%; */
+}
+.GridItem{
+    display: flex;
+    position: relative;
+    background-color: white;
+    min-width: 12rem;
+    height: 70%;
+    border-radius: .5rem;
+    justify-content: center;
+    overflow: hidden;
+    transition: all 250ms ease-in;
+    /* transition-property: overflow,  position, background-color, transform, opacity; */
+}
+.GridImage{
+    box-sizing: border-box  ;
+    object-fit: cover;
+    width: 100%;
+}
+.GridDetails{
+    position: absolute;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: .5rem;
+    bottom:0;
+    opacity: 0;
+    color: var(--color-white);
+    width: 100%;
+    height: 70%;
+    background: linear-gradient(to top, var(--color-primary) 25%, rgba(0,0,0,0) 100%);
+}
+
+.GridContent:hover .GridItem:not(:hover){
+    /* opacity: .5; */    
+    height: 60%;    
+    transform: scale(.95);
+    transition: all 350ms ease-in;/* 
+    transition-property:transform, height, opacity; */
+}
+
+ .GridItem:hover .GridDetails{
+   opacity: 1;
+}
+.GridItem:hover{
+    min-height: 40%;
+    min-width: 18rem;   
+    transform: scale(1.1);
+    transition: all 350ms ease-in;/* 
+    transition-property: background,width, height, transform; */
+}
+
+.GridImage:hover .GridImage{
+    transition: all 350ms ease-in;/* 
+    transition-property: transform; */
+}
+.GridOptions{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    opacity: 0;
+    cursor: pointer;
+    height: 40%;
+    
+}
+.GridItem:hover .GridOptions:hover{
+    opacity: 1;
+}
+.GridOptions button{
+    color: var(--color-white);
+    border: none;
+    padding: .5rem 1rem;
+    border-radius: .5rem;
+    font-size: var(--font__very-small);
+    font-family: var(--font-secondary);
+    font-weight: 600;
+    letter-spacing: var(--leter__spacing--small);
+    font-size: var(--font__very-small);
+    cursor: pointer;
+    transition: all 250ms ease-in;
+    height: fit-content;
+}
+.GridOptions button:nth-child(1){
+    background-color: var(--color-primary);
+}
+.GridOptions button:nth-child(2){
+    background-color: var(--color-secondary);
+}
+.MovieDate{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: .2rem;
+}
+.MovieDate h3{
+    font-family: var(--font-secondary);
+    font-size: var(--font__small);
+}
+
+.MovieDate p{
+    display: flex;    
+    column-gap: .3rem;
+    font-family: var(--font-secondary);
+    font-size: var(--font__very-small);
+}
+.MovieDate p .star{
+    background-image: url(https://res.cloudinary.com/sunqupacha/image/upload/v1644700345/portafolio/AppCine/icons/estrella_zaoxgt.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    width: .8rem;
+    height: 100%;
+}
