@@ -1,15 +1,16 @@
-.Search{
+.SearchContent{
     display: flex;
+    position: relative;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
     border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
     padding: 20px 0;
     row-gap: 1.5em;
+    padding-bottom: 4rem;
 }
-.Search h1{
+.SearchContent h1{
     font-family: var(--font-secondary);
     color: var(--color-white);
 }
@@ -27,7 +28,7 @@
     padding: 12px;
     padding-left: 45px;
     width: 100%;
-    background-color: rgba(2,39, 54,0.8);
+    background-color: rgba(2,39, 54, .7);
     border-radius: 25px;
     height: 100%;
     font-weight: 500;
@@ -35,6 +36,7 @@
     font-size: var(--font__small);
     font-family: var(--font-secondary);
     color: var(--color-white);
+    text-decoration-color: var(--color-secondary);
 }
 .Search__input::before{
     display: block;
@@ -49,4 +51,111 @@
     background-repeat: no-repeat;
     background-position: center;
     border-radius: 50%;
+}
+.SearchResult{
+    display: flex;
+    top: 70%;
+    position: absolute;
+    flex-direction: column;
+    width: 50%;
+    max-height: 20rem;
+    padding: 2rem 1rem;
+    
+    border-radius: 10px;
+    z-index: 20;
+    background-color: rgba(2,39, 54, 1);   
+}
+.SearchResult__content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;   
+    row-gap: 1.5em;
+    width: 100%;
+    overflow-y: scroll;
+}
+.SearchResult__content h2{
+    font-family: var(--font-secondary);
+    color: var(--color-white);
+    font-size: var(--font__small);
+    font-weight: 500;
+    letter-spacing: var(--leter__spacing--small);
+}
+.SearchResult__content__movies{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    row-gap: 3.5em;
+   
+}
+.SearchResult__content__movies__item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 100%;
+    
+}
+.SearchResult__content__movies__item img{
+    box-sizing: border-box;
+    object-fit: cover;
+    max-width: 45%;
+    
+}
+.SearchResult__content__movies__item h3{
+    font-family: var(--font-secondary);
+    color: var(--color-white);
+    font-size: var(--font__small);
+    font-weight: 500;
+    letter-spacing: var(--leter__spacing--small);
+    margin-top: 1rem;
+}
+.SearchResult__content__movies__item p{
+    font-family: var(--font-secondary);
+    color: var(--color-white);
+    font-size: var(--font__small);
+    font-weight: 500;
+    letter-spacing: var(--leter__spacing--small);
+    margin-top: 1rem;
+}
+.SearchResult__content__movies__item__text{
+    display:flex;
+    width:55%;
+    flex-direction: column;
+}
+.SearchResult__content__movies__item__text h2{
+    font-weight: 600;
+    padding: 0 .5rem;
+    max-width: 100%;    
+    font-size: var(--font__very-small);
+}
+.SearchResult__content__movies__item__text p{
+    position: relative;
+    font-size: var(--font__very-small);
+    color: var(--color-gray-light);
+    display: flex;
+    justify-content: center;
+    
+}
+.SearchResult__content__movies__item__text p:before{
+    content: "";
+    display: block;
+    position: absolute;
+    background-image: url(https://res.cloudinary.com/sunqupacha/image/upload/v1644700345/portafolio/AppCine/icons/estrella_zaoxgt.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    width: .8rem;
+    height: .8rem;
+    left: 1.6rem;
+}
+.SearchResult__content__movies__item__text p:after{
+    content: attr(attr-date);
+    display: block;
+
+    color: var(--color-gray-light);
+    position: absolute;
+    height: 1rem;
+    top: 0;
+    right: 0;
 }

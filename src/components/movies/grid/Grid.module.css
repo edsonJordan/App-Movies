@@ -9,7 +9,7 @@
     display: flex;
     flex-direction: row;
     column-gap: 1.2rem;
-    padding: .5rem 1.8rem;
+    padding: 0 1.8rem;
     align-items: center;
     /* height: 100%; */
 }
@@ -24,6 +24,24 @@
     overflow: hidden;
     transition: all 250ms ease-in;
     /* transition-property: overflow,  position, background-color, transform, opacity; */
+}
+.GridItem::before{
+    content: attr(attr-date);
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    width: fit-content;
+    background-color: var(--color-fourth);
+    color: white;
+    font-size: var(--font__very-small);
+    padding: .1em .8em;
+    border-radius: 25px;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 250ms ease-in;
 }
 .GridImage{
     box-sizing: border-box  ;
@@ -41,8 +59,8 @@
     opacity: 0;
     color: var(--color-white);
     width: 100%;
-    height: 70%;
-    background: linear-gradient(to top, var(--color-primary) 25%, rgba(0,0,0,0) 100%);
+    height: 50%;
+    background: linear-gradient(to top, var(--color-primary) 10%, rgba(0,0,0,0) 100%);
 }
 
 .GridContent:hover .GridItem:not(:hover){
@@ -57,11 +75,15 @@
    opacity: 1;
 }
 .GridItem:hover{
+    
     min-height: 40%;
     min-width: 18rem;   
     transform: scale(1.1);
     transition: all 350ms ease-in;/* 
     transition-property: background,width, height, transform; */
+}
+.GridItem:hover::before{
+    opacity: 0;
 }
 
 .GridImage:hover .GridImage{
@@ -75,7 +97,6 @@
     justify-content: space-evenly;
     opacity: 0;
     cursor: pointer;
-    height: 40%;
     
 }
 .GridItem:hover .GridOptions:hover{
@@ -84,16 +105,16 @@
 .GridOptions button{
     color: var(--color-white);
     border: none;
-    padding: .5rem 1rem;
+    padding: .3rem .7rem;
     border-radius: .5rem;
     font-size: var(--font__very-small);
     font-family: var(--font-secondary);
     font-weight: 600;
-    letter-spacing: var(--leter__spacing--small);
     font-size: var(--font__very-small);
     cursor: pointer;
     transition: all 250ms ease-in;
-    height: fit-content;
+    height: 1.8rem;
+
 }
 .GridOptions button:nth-child(1){
     background-color: var(--color-primary);
@@ -108,21 +129,23 @@
     align-items: center;
     row-gap: .2rem;
 }
+
 .MovieDate h3{
     font-family: var(--font-secondary);
     font-size: var(--font__small);
 }
 
-.MovieDate p{
+.MovieDate  div{
     display: flex;    
+    flex-direction: row;
     column-gap: .3rem;
     font-family: var(--font-secondary);
     font-size: var(--font__very-small);
 }
-.MovieDate p .star{
+
+.MovieDate  div .star{
     background-image: url(https://res.cloudinary.com/sunqupacha/image/upload/v1644700345/portafolio/AppCine/icons/estrella_zaoxgt.svg);
     background-position: center;
     background-repeat: no-repeat;
     width: .8rem;
-    height: 100%;
 }
