@@ -100,8 +100,7 @@
 .SearchResult__content__movies__item img{
     box-sizing: border-box;
     object-fit: cover;
-    max-width: 45%;
-    
+    max-width: 45%;    
 }
 .SearchResult__content__movies__item h3{
     font-family: var(--font-secondary);
@@ -152,10 +151,43 @@
 .SearchResult__content__movies__item__text p:after{
     content: attr(attr-date);
     display: block;
-
     color: var(--color-gray-light);
     position: absolute;
     height: 1rem;
     top: 0;
     right: 0;
+}
+
+@media (min-width: 768px) { 
+        
+    .SearchResult__content__movies__item img{
+        max-width: 50%;
+    }
+    .SearchResult__content__movies__item__text h2{
+        font-size: var(--font__normal);
+    }
+    .SearchResult__content__movies__item__text p{
+        width: 70%;
+    }
+}
+@media (min-width: 1024px) { 
+    .SearchResult__content__movies__item img{
+        max-width: 30%;
+     
+    }
+    .SearchResult__content__movies__item{
+      
+        max-width: 80%;
+    }
+    .SearchResult__content__movies{
+        row-gap: 1.2
+        rem;
+    }
+    .SearchResult__content__movies__item__text p{
+        font-size: var(--font__small);
+    }
+    .SearchResult__content__movies__item__text p:before{
+        left: 32%;
+    }
+
 }

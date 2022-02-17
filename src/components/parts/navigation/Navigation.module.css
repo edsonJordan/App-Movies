@@ -91,3 +91,11 @@
     border-radius: 50px;
     background-color: var(--color-white-dark);
 }
+
+@media (min-width: 768px) { 
+    .btn__navigation{
+        display: none;
+    }
+}
+
+/* btn__navigation */

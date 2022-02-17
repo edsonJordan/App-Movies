@@ -124,3 +124,6 @@ input{
     outline: none;
     box-sizing: border-box;
 }
+.root{
+  background-color: red;
+}

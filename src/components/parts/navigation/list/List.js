@@ -10,7 +10,7 @@ export default function List(props) {
 
       return(
           <>
-                <ul className={[style.navigation__list  ] } key="navigation__list" > 
+                <ul className={style.navigation__list } key="navigation__list" > 
                         <li className={style.navigation__item}>
                             <a href={url} className={style.navigation__link}>Home</a>
                         </li>

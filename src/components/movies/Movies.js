@@ -1,12 +1,14 @@
 import Grid from './grid/Grid';
 import style from './Movies.module.css';
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
+import { useHorizontalScroll } from "./useSideScroll";
 
 export default function Movies() {    
+
     const [movies, setMovies] = useState([]);
     const [Pagemovies, setPageMovies] = useState(1);
-
     const IncrePageMovies = (CountVariable) => setPageMovies(CountVariable + 1);
+
 
     const [UbicaLoad, setUbicaLoad] = useState({
         Y : 0,
@@ -14,17 +16,12 @@ export default function Movies() {
     });
     const [Loading, setLoading] = useState(false);
 
-
     const [series, setSeries] = useState([]);
     const [PageSeries, setPageSeries] = useState(1);
-
     const IncrePageSeries = (CountVariable) => setPageSeries(CountVariable + 1);
 
 
-
     const [tendencias, setTendencias] = useState([]);
-
-    const [visible, setVisible] = useState(false);
     const IMG_URL = 'https://image.tmdb.org/t/p/w500';
     const URL_API = 'https://api.themoviedb.org/3/movie/popular?api_key=';
     const ApiKey = "7a09eb9887e18d1890ce1757dc8951b0";
@@ -32,13 +29,27 @@ export default function Movies() {
 
     
 
+    const ScrollYactive = (e) => {
+        console.log("Entraste");
+        document.body.style.overflow = 'hidden';
+        const node =e.target
+        window.onscroll = null;
+        node.addEventListener("wheel", (evt) => {  
+          //   if(evt.deltaY > 0){
+           //     node.scrollLeft += 250;
+           // }else{
+          //      node.scrollLeft -= 250;
+           // } 
+        });
+    }
     const Scroll = (e) => {
         let ContentWidth  =e.target.children[1].children[0].clientWidth;
+        
         let ScrollLeft =Math.trunc(e.target.scrollLeft);         
-            if(ScrollLeft + e.target.clientWidth >= ContentWidth){
+            if(ScrollLeft + e.target.clientWidth >= ContentWidth){          
                 setUbicaLoad({
                     Y : (e.target.offsetTop+ 130),
-                    X : (e.target.children[1].clientWidth - 80)
+                    X : (e.target.children[1].clientWidth - 50)
                 });
                 setLoading(true);
                 let NodeName = e.target.getAttribute('att__cont');
@@ -56,6 +67,7 @@ export default function Movies() {
             }
         }
    useEffect(() => {
+      /*  console.log(Pagemovies); */
             fetch(`${URL_API+ApiKey}&language=en-US&page=${Pagemovies}`)
             .then(response => response.json())
             .then((data) => {
@@ -76,6 +88,7 @@ export default function Movies() {
    }, [Pagemovies]);
 
    useEffect(() => {
+       /* console.log(PageSeries); */
         fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${ApiKey}&language=en-US&page=${PageSeries}`)
         .then(response => response.json())
         .then((data) => {
@@ -96,12 +109,6 @@ export default function Movies() {
     }, [PageSeries]);
 
     useEffect(() => {
-        
-       /*  if(visible){
-            setVisible(true)
-         }else{
-            setVisible(false)
-         } */
         fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=${ApiKey}`)
             .then(response => response.json())
             .then((data) => {               
@@ -118,12 +125,6 @@ export default function Movies() {
                     setTendencias((tendencias)=>[...tendencias, tendencia]);                
                         });
        });
-            
-            
-           
-                  /*   return ()=>{
-                        setVisible(false)
-                    } */
             }, []);
         return (
             <>     
@@ -135,15 +136,15 @@ export default function Movies() {
                                 </div>
                             </div>
                         }
-                    <div onScroll={Scroll} att__cont={"movie"} className={style.Container__movies}>                  
+                    <div onScroll={Scroll} ref={ useHorizontalScroll()}  /* onMouseOut={}  */  att__cont={"movie"} className={style.Container__movies}>                  
                         <h2 className={style.TittleCategory} >Populares </h2>
                         <Grid nameGrid={"Movie"} DataMovies={movies} />                        
                     </div>
-                    <div onScroll={Scroll} att__cont={"serie"} className={style.Container__movies}>
+                    <div onScroll={Scroll} ref={ useHorizontalScroll()} att__cont={"serie"} className={style.Container__movies}>
                         <h2 className={style.TittleCategory} >Series</h2>
                         <Grid nameGrid={"Serie"}  DataMovies={series}/>                        
                     </div>
-                    <div className={style.Container__movies}>
+                    <div className={style.Container__movies} ref={ useHorizontalScroll()} >
                         <h2 className={style.TittleCategory} >Tendencias</h2>                        
                         <Grid nameGrid={"tenden"}  DataMovies={tendencias}/>                        
                     </div>

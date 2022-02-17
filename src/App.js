@@ -7,12 +7,15 @@ import Movies from './components/movies/Movies';
 import Footer from './components/parts/footer/Footer';
 
 function App() {
+ 
   return (
     <>
-      <Navigation />
-      <div className="App Container">      
-        <SearchMovie/>      
-        <Movies/>
+      <div className="All"  >     
+        <Navigation />
+        <div className="App Container">      
+          <SearchMovie/>      
+          <Movies/>
+        </div>        
       </div>
       <Footer/>
     </>

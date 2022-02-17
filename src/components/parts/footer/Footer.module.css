@@ -1,4 +1,6 @@
 .Footer{
+    display: flex;
+    justify-content: center;
     background-color: var(--color-primary);
     padding: 20px;
     text-align: center;
@@ -39,4 +41,36 @@
 }
 .Navigation__logo:hover{
     fill: var(--color-white-dark);
+}
+.content__links{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-evenly;
+}
+@media (min-width : 768px){
+    
+    .Footer__content{
+        justify-self: center;
+        width: 90%;
+        justify-content: center;
+        align-content: center;
+    }
+    .Footer__content__social{
+       flex-direction: row;
+       justify-content: space-between;
+       text-align: left;
+    }
+    .content__links{
+        column-gap: 1rem;
+    }
+    .Footer__content__text{
+        display: flex;
+        align-items: center;
+        align-content: center;
+        column-gap: 1rem;
+    }
+    .Navigation__logo{
+        width:1.5rem;
+        height:1.5rem;
+    }
 }
