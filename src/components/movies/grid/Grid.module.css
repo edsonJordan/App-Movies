@@ -3,8 +3,9 @@
     display: flex;
     flex-direction: row;
     height: 100%;
-    width: 100%;
+    max-width: 100%;
     align-content: center;
+    
 }
 .GridContent{
     display: flex;
@@ -22,7 +23,6 @@
     height: 70%;
     border-radius: .5rem;
     justify-content: center;
-    overflow: hidden;
     transition: all 250ms ease-in;
     /* transition-property: overflow,  position, background-color, transform, opacity; */
 }
@@ -79,6 +79,7 @@
     
     min-height: 40%;
     min-width: 18rem;   
+    box-shadow: 0px 10px 20px 1px rgba(255, 255, 255, 0.7);
     transform: scale(1.1);
     transition: all 350ms ease-in;/* 
     transition-property: background,width, height, transform; */

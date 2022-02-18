@@ -5,8 +5,29 @@ import { useHorizontalScroll } from "./useSideScroll";
 
 export default function Movies() {    
 
+    const [genres, setGenre] = useState([]);
+
+    const [filterGenre, setFilterGenre] = useState([]);
+
+
+    const [filterMovies, setFilterMovies] = useState([]);
+    const [PagefilterMovies, setPageFilterMovies] = useState(1); 
+
+    const IncrePageFilterMovies = (CountVariable) => setPageFilterMovies(CountVariable +1)
+
+    const handleChange  = param  => (e) =>{        
+            e.target.parentNode.classList.toggle(style.Listactive);
+           if(filterGenre.indexOf(param) === -1){
+                 return setFilterGenre([...filterGenre, param]); 
+           }else{
+                return setFilterGenre(filterGenre.filter(item => item !== param));
+           }
+    }
+  
+
     const [movies, setMovies] = useState([]);
     const [Pagemovies, setPageMovies] = useState(1);
+
     const IncrePageMovies = (CountVariable) => setPageMovies(CountVariable + 1);
 
 
@@ -15,33 +36,13 @@ export default function Movies() {
         X : 0
     });
     const [Loading, setLoading] = useState(false);
-
     const [series, setSeries] = useState([]);
     const [PageSeries, setPageSeries] = useState(1);
     const IncrePageSeries = (CountVariable) => setPageSeries(CountVariable + 1);
-
-
     const [tendencias, setTendencias] = useState([]);
     const IMG_URL = 'https://image.tmdb.org/t/p/w500';
     const URL_API = 'https://api.themoviedb.org/3/movie/popular?api_key=';
     const ApiKey = "7a09eb9887e18d1890ce1757dc8951b0";
-
-
-    
-
-    const ScrollYactive = (e) => {
-        console.log("Entraste");
-        document.body.style.overflow = 'hidden';
-        const node =e.target
-        window.onscroll = null;
-        node.addEventListener("wheel", (evt) => {  
-          //   if(evt.deltaY > 0){
-           //     node.scrollLeft += 250;
-           // }else{
-          //      node.scrollLeft -= 250;
-           // } 
-        });
-    }
     const Scroll = (e) => {
         let ContentWidth  =e.target.children[1].children[0].clientWidth;
         
@@ -49,7 +50,7 @@ export default function Movies() {
             if(ScrollLeft + e.target.clientWidth >= ContentWidth){          
                 setUbicaLoad({
                     Y : (e.target.offsetTop+ 130),
-                    X : (e.target.children[1].clientWidth - 50)
+                    X : (e.target.children[1].clientWidth - 80)
                 });
                 setLoading(true);
                 let NodeName = e.target.getAttribute('att__cont');
@@ -59,6 +60,9 @@ export default function Movies() {
                         break;                
                     case "serie":
                         IncrePageSeries(PageSeries);
+                        break;
+                    case "search":
+                        IncrePageFilterMovies(PagefilterMovies);
                         break;
                     default:
                         break;
@@ -88,7 +92,6 @@ export default function Movies() {
    }, [Pagemovies]);
 
    useEffect(() => {
-       /* console.log(PageSeries); */
         fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${ApiKey}&language=en-US&page=${PageSeries}`)
         .then(response => response.json())
         .then((data) => {
@@ -101,7 +104,7 @@ export default function Movies() {
                     release_date : el.first_air_date,
                     vote_average : el.vote_average,
                     }
-                setSeries((series)=>[...series, serie]);                
+                setSeries((filterMovie)=>[...filterMovie, serie]);                
                     });
             setLoading(false);   
             });
@@ -126,26 +129,118 @@ export default function Movies() {
                         });
        });
             }, []);
+
+     useEffect(() => {
+            fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${ApiKey}&language=en-US`)
+            .then(response => response.json())
+            .then((data) => {
+                //setGenre(data.genres);
+                data.genres.forEach((el) => {
+                    let genero = {
+                        id : el.id,
+                        name : el.name,
+                        }
+                    setGenre((genres)=>[...genres, genero]);                
+                        });
+            });
+     },  []);       
+
+
+     useEffect(() => {
+         const url = "https://api.themoviedb.org/3/discover/movie?api_key=7a09eb9887e18d1890ce1757dc8951b0";
+         const link  = filterGenre.length <= 1 ? url + "&page=1" : url+"&with_genres="+filterGenre.join(',')+`&page=1`;       
+           fetch(link)
+            .then(response => response.json())
+            .then((data) => {         
+                let movies = data.results.map((el) => {
+                    let movie = {
+                        id : el.id,
+                        title : el.title,
+                        poster : el.backdrop_path ? IMG_URL + el.backdrop_path : 'https://via.placeholder.com/500x750',
+                        overview : el.overview,
+                        release_date : el.release_date,
+                        vote_average : el.vote_average,
+                        media_type : el.media_type ? el.media_type : ''
+                        }
+                    return movie;
+                });
+                setFilterMovies(movies);
+            setLoading(false);  
+            });
+     }, [filterGenre]);
+
+        useEffect(() => {
+                //${PagefilterMovies}
+                const url = "https://api.themoviedb.org/3/discover/movie?api_key=7a09eb9887e18d1890ce1757dc8951b0";
+                const link = url + "&page="+PagefilterMovies+"&with_genres="+filterGenre.join(',')+`&page=${PagefilterMovies}`;
+                fetch(link)
+                    .then(response => response.json())
+                    .then((data) => {  
+                        const isWouth = data.results.length && true ;
+                        if(isWouth){
+                            return  setLoading(false);
+                        }                            
+                        let movies = data.results.map((el) => {
+                            let movie = {
+                                id : el.id,
+                                title : el.title,
+                                poster : el.backdrop_path ? IMG_URL + el.backdrop_path : 'https://via.placeholder.com/500x750',
+                                overview : el.overview,
+                                release_date : el.release_date,
+                                vote_average : el.vote_average,
+                                media_type : el.media_type ? el.media_type : ''
+                                }
+                            return movie;
+                        });
+                        setLoading(false);
+                        if(PagefilterMovies === 1){
+                            return setFilterMovies(movies);
+                        }
+                        setFilterMovies((filterMovies)=>[...filterMovies, ...movies]);
+                    });
+        }, [PagefilterMovies]);
+                  
         return (
             <>     
-                     {
-                        Loading && 
-                            <div style={{top:UbicaLoad.Y+"px", left:UbicaLoad.X+"px"}} className={style.LoadingContainer}>                                
+                            {Loading && 
+                             <div style={{top:UbicaLoad.Y+"px", left:UbicaLoad.X+"px"}} className={style.LoadingContainer}>                                
                                 <div className={style.LoadingSpiner}>
                                     
                                 </div>
-                            </div>
-                        }
-                    <div onScroll={Scroll} ref={ useHorizontalScroll()}  /* onMouseOut={}  */  att__cont={"movie"} className={style.Container__movies}>                  
-                        <h2 className={style.TittleCategory} >Populares </h2>
+                            </div>  }
+                    <div onScroll={Scroll} ref={ useHorizontalScroll()}   att__cont={"search"} className={style.Container__movies}>                  
+                        <div className={style.TittleCategory} > 
+                            <h2>Búsqueda</h2> 
+                            <ul className={style.OptionSearch} >
+                                    {
+                                        genres?.map((el, i) => {
+                                            return (
+                                                <li className={style.listGenre} key={i}  >
+                                                    <button  onClick={handleChange(el.id)} className={style.linkOption} >{el.name}</button>
+                                                </li>
+                                            )
+                                        })
+                                    }                                
+                                </ul> 
+                        </div>                            
+                        {<Grid nameGrid={"search"} DataMovies={filterMovies} />  }                      
+                    </div>
+                    <div onScroll={Scroll} ref={ useHorizontalScroll()}    att__cont={"movie"} className={style.Container__movies}>                  
+                        <div className={style.TittleCategory} >
+                        <h2>Populares</h2>
+                         </div>
                         <Grid nameGrid={"Movie"} DataMovies={movies} />                        
                     </div>
                     <div onScroll={Scroll} ref={ useHorizontalScroll()} att__cont={"serie"} className={style.Container__movies}>
-                        <h2 className={style.TittleCategory} >Series</h2>
+                        <div className={style.TittleCategory} >
+                            <h2>Series</h2>
+                        </div>
                         <Grid nameGrid={"Serie"}  DataMovies={series}/>                        
                     </div>
                     <div className={style.Container__movies} ref={ useHorizontalScroll()} >
-                        <h2 className={style.TittleCategory} >Tendencias</h2>                        
+                        <div className={style.TittleCategory} >
+                            <h2>Tendencias</h2>
+                        </div>                        
                         <Grid nameGrid={"tenden"}  DataMovies={tendencias}/>                        
                     </div>
             </>

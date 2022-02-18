@@ -3,17 +3,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  max-width: 100%;
   min-height: 100vh;
 }
 .App {
   text-align: center;
   
-  overflow: hidden;
 }
 .Container{
   padding-top: 7rem;
-  width: 100%;
+  max-width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

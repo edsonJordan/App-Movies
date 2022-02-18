@@ -11,12 +11,13 @@ export default function Grid({DataMovies, nameGrid}) {
         return (
             <>
             <div className={style.Grid}   >            
-                <div className={style.GridContent}  >                    
-                    {                        
+                <div className={style.GridContent}  >     
+                    {                                            
                         DataMovies?.map((el,index) => {
-                            return (                                
+                            return (    
+                                                            
                                 <div className={style.GridItem} attr-date={  el.media_type ?  el.media_type : el.release_date.substr(0,4)} 
-                                     key={index+el.id} >
+                                     key={nameGrid+index+el.id} >
                                     <img className={style.GridImage} src={el.poster} />
                                     <div className={style.GridDetails}>         
                                         <div className={style.GridOptions}>
