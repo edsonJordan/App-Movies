@@ -121,7 +121,6 @@ export default function Movies() {
                         title : el.title,
                         poster : el.backdrop_path ? IMG_URL + el.backdrop_path : 'https://via.placeholder.com/500x750',
                         overview : el.overview,
-                        release_date : el.release_date,
                         vote_average : el.vote_average,
                         media_type : el.media_type ? el.media_type : ''
                         }
@@ -148,7 +147,7 @@ export default function Movies() {
 
      useEffect(() => {
          const url = "https://api.themoviedb.org/3/discover/movie?api_key=7a09eb9887e18d1890ce1757dc8951b0";
-         const link  = filterGenre.length <= 1 ? url + "&page=1" : url+"&with_genres="+filterGenre.join(',')+`&page=1`;       
+         const link  = filterGenre.length < 1 ? url + "&page=1" : url+"&with_genres="+filterGenre.join(',')+`&page=1`;       
            fetch(link)
             .then(response => response.json())
             .then((data) => {         
@@ -166,8 +165,14 @@ export default function Movies() {
                 });
                 setFilterMovies(movies);
             setLoading(false);  
+            
             });
      }, [filterGenre]);
+
+     useEffect(() => {
+        console.log(filterMovies);
+     }, [filterMovies]);
+
 
         useEffect(() => {
                 //${PagefilterMovies}
@@ -176,8 +181,8 @@ export default function Movies() {
                 fetch(link)
                     .then(response => response.json())
                     .then((data) => {  
-                        const isWouth = data.results.length && true ;
-                        if(isWouth){
+                        let isWhithout = data.results.length === 0 ? true : false;
+                        if(isWhithout){
                             return  setLoading(false);
                         }                            
                         let movies = data.results.map((el) => {
