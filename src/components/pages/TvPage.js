@@ -15,16 +15,11 @@ export default function TvPage() {
     const isDesktop = useMediaQuery({ query: 'min-width: 1024px' });
     const isTablet = useMediaQuery({ query: 'min-width: 767px' });
     const isMobile = useMediaQuery({ query: 'min-width: 320px' });
-
     const [tv, setTvb] = useState([]);
-
         let {idTv} = useParams();
         const IMG = "https://image.tmdb.org/t/p/w500";
-
-
         //https://api.themoviedb.org/3/tv/{tv_id}?api_key=<<api_key>>&language=en-US
-        useEffect(() => {
-            
+        useEffect(() => {            
             fetch(`https://api.themoviedb.org/3/tv/${idTv}?api_key=7a09eb9887e18d1890ce1757dc8951b0&language=es-ES`)
             .then(response => response.json())
             .then((data) => {
