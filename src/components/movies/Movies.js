@@ -95,7 +95,7 @@ export default function Movies() {
    }, [Pagemovies]);
 
    useEffect(() => {
-        fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${ApiKey}&language=en-US&page=${PageSeries}`)
+        fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${ApiKey}&language=es-ES&page=${PageSeries}`)
         .then(response => response.json())
         .then((data) => {
             data.results.forEach((el) => {
@@ -133,7 +133,7 @@ export default function Movies() {
     }, []);
 
      useEffect(() => {
-            fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${ApiKey}&language=en-US`)
+            fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${ApiKey}&language=es-ES`)
             .then(response => response.json())
             .then((data) => {
                 //setGenre(data.genres);
@@ -149,7 +149,7 @@ export default function Movies() {
 
 
      useEffect(() => {
-         const url = "https://api.themoviedb.org/3/discover/movie?api_key=7a09eb9887e18d1890ce1757dc8951b0";
+         const url = "https://api.themoviedb.org/3/discover/movie?api_key=7a09eb9887e18d1890ce1757dc8951b0&language=es-ES";
          const link  = filterGenre.length < 1 ? url + "&page=1" : url+"&with_genres="+filterGenre.join(',')+`&page=1`;       
            fetch(link)
             .then(response => response.json())
@@ -179,7 +179,7 @@ export default function Movies() {
 
         useEffect(() => {
                 //${PagefilterMovies}
-                const url = "https://api.themoviedb.org/3/discover/movie?api_key=7a09eb9887e18d1890ce1757dc8951b0";
+                const url = "https://api.themoviedb.org/3/discover/movie?api_key=7a09eb9887e18d1890ce1757dc8951b0&language=es-ES";
                 const link = url + "&page="+PagefilterMovies+"&with_genres="+filterGenre.join(',')+`&page=${PagefilterMovies}`;
                 fetch(link)
                     .then(response => response.json())
@@ -217,7 +217,7 @@ export default function Movies() {
                             </div>  }
                     <div onScroll={Scroll} ref={ useHorizontalScroll()}   att__cont={"search"} className={style.Container__movies}>                  
                         <div className={style.TittleCategory} > 
-                            <h2>Películas</h2> 
+                            <h2>Géneros</h2> 
                             <ul className={style.OptionSearch} >
                                     {
                                         genres?.map((el, i) => {

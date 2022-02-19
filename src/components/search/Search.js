@@ -15,7 +15,7 @@ export default function SearchMovie(nameGrid) {
     const handleChange = (e) => {
         setInput(e.target.value);
             if(input.length > 0){
-                fetch(`https://api.themoviedb.org/3/search/movie?api_key=${ApiKey}&language=en-US&query=${input}&page=1&include_adult=false`)
+                fetch(`https://api.themoviedb.org/3/search/movie?api_key=${ApiKey}&language=es-ES&query=${input}&page=1&include_adult=false`)
                 .then(response => response.json())
                 .then((data) => {
                     setSearchs(data.results);
@@ -26,7 +26,7 @@ export default function SearchMovie(nameGrid) {
 
         const redirection  = (param)  => (e) =>{        
             //redirection vers la page de detail
-            window.open(`/App-Movies/movie/${param}`, "_blank");
+            window.open(`/movie/${param}`, "_blank");
     }
         return (
             <div className={style.SearchContent}>    
@@ -42,7 +42,7 @@ export default function SearchMovie(nameGrid) {
                             {  dataSearchs?.map((el) => {
                                     return (
                                         <div className={style.SearchResult__content__movies__item} key={el.id}  >
-                                            <img   onClick={redirection(el.id)} src={el.poster_path ? IMG_URL+ el.poster_path : 'https://via.placeholder.com/500x750'  }   alt=""/>
+                                            <img  onClick={redirection(el.id)} src={el.poster_path ? IMG_URL+ el.poster_path : 'https://via.placeholder.com/500x750'  }   alt=""/>
                                             <div className={style.SearchResult__content__movies__item__text} >
                                                 <h2>{el.title}</h2>
                                                 <p attr-date= {el.release_date && el.release_date.substr(0,4)}  >{el.vote_average}</p>

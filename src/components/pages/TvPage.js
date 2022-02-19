@@ -25,7 +25,7 @@ export default function TvPage() {
         //https://api.themoviedb.org/3/tv/{tv_id}?api_key=<<api_key>>&language=en-US
         useEffect(() => {
             
-            fetch(`https://api.themoviedb.org/3/tv/${idTv}?api_key=7a09eb9887e18d1890ce1757dc8951b0&language=en-US`)
+            fetch(`https://api.themoviedb.org/3/tv/${idTv}?api_key=7a09eb9887e18d1890ce1757dc8951b0&language=es-ES`)
             .then(response => response.json())
             .then((data) => {
                 setTvb(data);

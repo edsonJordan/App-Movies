@@ -17,11 +17,11 @@ export default function App() {
     
               <BrowserRouter>
                             <Routes>
-                                <Route path="App-Movies/" element={<HomePage/>}  />
-                                <Route path="App-Movies/about" element={<AboutPage/>}  />
-                                <Route path="App-Movies/contact" element={<ContactPage/>}  />
-                                <Route path="App-Movies/movie/:idMovie" element={<MoviePage/>}  />
-                                <Route path="App-Movies/tv/:idTv" element={<TvPage/>}  />
+                                <Route path="/" element={<HomePage/>}  />
+                                <Route path="about" element={<AboutPage/>}  />
+                                <Route path="contact" element={<ContactPage/>}  />
+                                <Route path="movie/:idMovie" element={<MoviePage/>}  />
+                                <Route path="tv/:idTv" element={<TvPage/>}  />
                                 <Route path="*" element={<HomePage/>}  />
                             </Routes> 
               </BrowserRouter>  

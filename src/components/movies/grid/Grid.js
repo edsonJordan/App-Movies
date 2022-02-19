@@ -10,16 +10,23 @@ export default function Grid({DataMovies, nameGrid}) {
     const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
     
-    const redirection  = (param,type)  => (e) =>{        
+    const redirection  = (param, mediaType)  => (e) =>{        
         //redirection vers la page de detail
+
+       
        switch (true) {
-           case type === 'movie':
-            window.open(`/App-Movies/movie/${param}`, "_blank");
-            /* window.location.href = `App-Movies/movie/${param}`; */
+           case mediaType === 'movie':
+            window.open(`/movie/${param}`, "_blank");
                break;
-              case type === 'tv':
-            window.open(`/App-Movies/tv/${param}`, "_blank");
-            /* window.location.href = `App-Movies/tv/${param}`; */
+            case mediaType === 'tv':
+            window.open(`/tv/${param}`, "_blank");
+                break;
+            case mediaType === 'tendencia':
+                window.open(`/movie/${param}`, "_blank");
+                break;
+            case mediaType === 'search':
+                window.open(`/movie/${param}`, "_blank");
+                break;
            default:
                break;
        }
@@ -39,7 +46,7 @@ export default function Grid({DataMovies, nameGrid}) {
                                     <div className={style.GridDetails}>         
                                         <div className={style.GridOptions}>
                                             <button>Comprar</button>
-                                            <button onClick={ nameGrid === "tendencia" || "tv"  ? redirection(el.id, "tv"): redirection(el.id, "movie")} >
+                                            <button onClick={ el.media_type ? redirection(el.id, el.media_type) : redirection(el.id, nameGrid)} >
                                                 Ver {}Detalles
                                             </button>
                                         </div>                               
