@@ -16,16 +16,16 @@ export default function Grid({DataMovies, nameGrid}) {
        
        switch (true) {
            case mediaType === 'movie':
-            window.open(`/movie/${param}`, "_blank");
+            window.open(`/App-Movies/movie/${param}`, "_blank");
                break;
             case mediaType === 'tv':
-            window.open(`/tv/${param}`, "_blank");
+            window.open(`/App-Movies/tv/${param}`, "_blank");
                 break;
             case mediaType === 'tendencia':
-                window.open(`/movie/${param}`, "_blank");
+                window.open(`/App-Movies/movie/${param}`, "_blank");
                 break;
             case mediaType === 'search':
-                window.open(`/movie/${param}`, "_blank");
+                window.open(`/App-Movies/movie/${param}`, "_blank");
                 break;
            default:
                break;
