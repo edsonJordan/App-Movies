@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import style from './Search.module.css';
 
-export default function SearchMovie() {
+export default function SearchMovie(nameGrid) {
 
     const [dataSearchs, setSearchs] = useState([]);
     const [input, setInput] = useState("");
@@ -22,12 +22,18 @@ export default function SearchMovie() {
                 });
             }
         }
+
+
+        const redirection  = (param)  => (e) =>{        
+            //redirection vers la page de detail
+            window.open(`/App-Movies/movie/${param}`, "_blank");
+    }
         return (
             <div className={style.SearchContent}>    
                  
                 <h1>¿Que veremos Hoy?</h1>
                 <div className={style.Search__input}>
-                    <input className={style.Input} type="text" onBlur={e => {setInput("")}}  onChange={handleChange}  placeholder="Encuentra pelicula o serie"  />
+                    <input className={style.Input} type="text" onBlur={e => { const delayBlur=  setInterval(()=>{ setInput(""); clearInterval(delayBlur) }, 500) }}  onChange={handleChange}  placeholder="Encuentra pelicula o serie"  />
                 </div>               
                 {
                   input.length > 0 &&  <div className={style.SearchResult} >
@@ -36,7 +42,7 @@ export default function SearchMovie() {
                             {  dataSearchs?.map((el) => {
                                     return (
                                         <div className={style.SearchResult__content__movies__item} key={el.id}  >
-                                            <img src={el.poster_path ? IMG_URL+ el.poster_path : 'https://via.placeholder.com/500x750'  }   alt=""/>
+                                            <img   onClick={redirection(el.id)} src={el.poster_path ? IMG_URL+ el.poster_path : 'https://via.placeholder.com/500x750'  }   alt=""/>
                                             <div className={style.SearchResult__content__movies__item__text} >
                                                 <h2>{el.title}</h2>
                                                 <p attr-date= {el.release_date && el.release_date.substr(0,4)}  >{el.vote_average}</p>

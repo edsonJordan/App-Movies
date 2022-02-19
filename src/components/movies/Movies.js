@@ -43,6 +43,9 @@ export default function Movies() {
     const IMG_URL = 'https://image.tmdb.org/t/p/w500';
     const URL_API = 'https://api.themoviedb.org/3/movie/popular?api_key=';
     const ApiKey = "7a09eb9887e18d1890ce1757dc8951b0";
+
+
+
     const Scroll = (e) => {
         let ContentWidth  =e.target.children[1].children[0].clientWidth;
         
@@ -127,7 +130,7 @@ export default function Movies() {
                     setTendencias((tendencias)=>[...tendencias, tendencia]);                
                         });
        });
-            }, []);
+    }, []);
 
      useEffect(() => {
             fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${ApiKey}&language=en-US`)
@@ -150,7 +153,7 @@ export default function Movies() {
          const link  = filterGenre.length < 1 ? url + "&page=1" : url+"&with_genres="+filterGenre.join(',')+`&page=1`;       
            fetch(link)
             .then(response => response.json())
-            .then((data) => {         
+            .then((data) => {        
                 let movies = data.results.map((el) => {
                     let movie = {
                         id : el.id,
@@ -169,9 +172,9 @@ export default function Movies() {
             });
      }, [filterGenre]);
 
-     useEffect(() => {
+     /* useEffect(() => {
         console.log(filterMovies);
-     }, [filterMovies]);
+     }, [filterMovies]); */
 
 
         useEffect(() => {
@@ -209,13 +212,12 @@ export default function Movies() {
             <>     
                             {Loading && 
                              <div style={{top:UbicaLoad.Y+"px", left:UbicaLoad.X+"px"}} className={style.LoadingContainer}>                                
-                                <div className={style.LoadingSpiner}>
-                                    
+                                <div className={style.LoadingSpiner}>                                    
                                 </div>
                             </div>  }
                     <div onScroll={Scroll} ref={ useHorizontalScroll()}   att__cont={"search"} className={style.Container__movies}>                  
                         <div className={style.TittleCategory} > 
-                            <h2>Búsqueda</h2> 
+                            <h2>Películas</h2> 
                             <ul className={style.OptionSearch} >
                                     {
                                         genres?.map((el, i) => {
@@ -234,19 +236,19 @@ export default function Movies() {
                         <div className={style.TittleCategory} >
                         <h2>Populares</h2>
                          </div>
-                        <Grid nameGrid={"Movie"} DataMovies={movies} />                        
+                        <Grid nameGrid={"movie"} DataMovies={movies} />                        
                     </div>
                     <div onScroll={Scroll} ref={ useHorizontalScroll()} att__cont={"serie"} className={style.Container__movies}>
                         <div className={style.TittleCategory} >
                             <h2>Series</h2>
                         </div>
-                        <Grid nameGrid={"Serie"}  DataMovies={series}/>                        
+                        <Grid nameGrid={"tv"}  DataMovies={series}/>                        
                     </div>
                     <div className={style.Container__movies} ref={ useHorizontalScroll()} >
                         <div className={style.TittleCategory} >
                             <h2>Tendencias</h2>
                         </div>                        
-                        <Grid nameGrid={"tenden"}  DataMovies={tendencias}/>                        
+                        <Grid nameGrid={"tendencia"}  DataMovies={tendencias}/>                        
                     </div>
             </>
             

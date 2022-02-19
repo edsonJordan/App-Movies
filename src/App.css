@@ -8,7 +8,6 @@
 }
 .App {
   text-align: center;
-  
 }
 .Container{
   padding-top: 7rem;
@@ -17,9 +16,32 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  justify-content: end;
-}
+  background-repeat: no-repeat;
 
+}
+.Full{
+  width: 100%;
+  padding-top: 0;
+  align-items: center;
+  justify-content: end;
+  height: 100%;
+  row-gap: 3rem;
+  /* background-image: url("https://image.tmdb.org/t/p/w500/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg");
+  background-size: cover;
+  background-position: center; */
+
+}
+.Full::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 0;
+  height: 100%;
+  background-color: rgba(0,0,0,0.75);
+ 
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -59,5 +81,9 @@
 @media (min-width: 768px) { 
   .Container{
     width: 85%;
+  }
+  .Full{
+    padding-top: 0;
+    width: 100%;
   }
 }

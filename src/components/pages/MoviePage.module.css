@@ -1,0 +1,68 @@
+.ContentFull{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    height: 100%;
+    width: 100%;
+}
+.TitleMovie{
+    display: flex;
+    flex-direction: column;
+    color: var(--color-white);
+    text-align: left;
+    width: 90%;
+    
+    row-gap: 1.5rem;
+}
+.Htittle{
+    font-size: 3em;
+   font-weight: 700;
+}
+.DateTittle{
+    display: flex;
+    flex-direction: column;
+    row-gap: .7rem;
+    font-weight: 600;
+    font-size:var(--font__small);
+}
+.DateTittle span{
+    font-weight: 700;
+}
+.DateTittle p{
+    text-transform: uppercase;
+}
+.DateSpan{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 2.2em;
+    color: var(--color-white-dark);
+    font-size: var(--font__very-small);
+    font-weight: 600;
+}
+
+.CompaniesMovie{
+    display: flex;
+    flex-direction: row;
+    column-gap: 1rem;
+    
+    overflow-x: auto;
+}
+.InfoMovie{
+    width: 90%;
+    z-index: 20;
+    color: var(--color-white);
+    text-align: justify;
+    padding-bottom: 1.5rem ;
+}
+.LogoCompany{
+    cursor: pointer;
+    object-fit: contain;
+    padding: .15rem;
+    width: 2.1rem;
+    height: 2.1rem;
+    background-color: var(--color-white);
+
+}

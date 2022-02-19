@@ -11,6 +11,7 @@ import style from "./Navigation.module.css";
 export default function Navigation() {
     const isDesktop = useMediaQuery({ query: 'min-width: 1024px' });
     const isTablet = useMediaQuery({ query: 'min-width: 767px' });
+    
     const [visible, setVisible] = useState(false);
 
 

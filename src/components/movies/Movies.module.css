@@ -115,3 +115,12 @@
     color: var(--color-primary);
     
 }
+@media (min-width: 768px){
+    .TittleCategory{
+        width: 85%;
+    }
+    .TittleCategory h2{
+        padding-left: 0;
+    }
+   
+}
