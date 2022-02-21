@@ -10,14 +10,15 @@ import Footer from '../parts/footer/Footer';
 export default function HomePage() {
   return (
     <>
-          <div className="All"  >     
-            <Navigation />
-            <div className="App Container">      
+         
+
+         <div className="App Container"> 
               <SearchMovie/>      
               <Movies/>
-            </div>        
-          </div>
-          <Footer/>
+        </div>
+
+
+           
     </>
     
 

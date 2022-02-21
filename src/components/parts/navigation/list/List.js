@@ -1,24 +1,27 @@
 
 
 import style from "./List.module.css";
-
-
+import { useNavigate   } from "react-router-dom";
 
 export default function List(props) {
+   
 
 
+
+    const handleClick =  (param) => (e) => {
+        
+    }
       return(
           <>
-                <ul className={style.navigation__list } key="navigation__list" > 
-                                             
+                <ul className={style.navigation__list } key="navigation__list" >                                              
                             <li className={style.navigation__item}>
-                                <a href={"/"} className={style.navigation__link}>Home</a>
+                                <button onClick={handleClick("/App-Movies/")} className={style.navigation__link}>Home</button>
                             </li>
                             <li className={style.navigation__item}>
-                                <a href={"/about"} className={style.navigation__link}>About</a>
+                                <button href={"/App-Movies/about"} className={style.navigation__link}>About</button>
                             </li>
                             <li className={style.navigation__item}>
-                                <a href={"/contact"} className={style.navigation__link}>Contact</a>                            
+                                <button href={"/App-Movies/contact"} className={style.navigation__link}>Contact</button>                            
                             </li>
                 </ul>   
                 

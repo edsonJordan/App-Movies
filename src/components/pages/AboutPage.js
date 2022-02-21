@@ -8,13 +8,9 @@ import SearchMovie from "../search/Search";
            
         return (
             <>
-            <div className="All"  >     
-                <Navigation />
-                    <div className="App Container">      
-                    
-                </div>        
-            </div>
-            <Footer/>
+               <div className="App Container"> 
+                        About
+                </div>
             </>
                 
             )

@@ -155,3 +155,9 @@
         
 
 }
+@media (min-width: 1024px) {
+    .Container__grid__actor .Grid .GridContent{
+      flex-direction: column !important;
+    }
+    
+  }

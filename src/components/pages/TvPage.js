@@ -38,8 +38,7 @@ export default function TvPage() {
 
     return (
         <>
-            <div className="All"  >     
-                <Navigation />
+            
                     <div style={styleContainer}  className="App Container Full">      
                         <div className={style.ContentFull} >
                             <div className={style.TitleMovie} >
@@ -78,8 +77,7 @@ export default function TvPage() {
                             </span>
                         </div>
                     </div>        
-            </div>
-            <Footer/>
+          
         </>
         )
         

@@ -146,3 +146,15 @@ input{
 .root{
   background-color: red;
 }
+@media (min-width: 768px) {
+   .GridActor:hover{
+
+    min-width: 8rem !important;
+  }
+  .GridActor{
+    min-width: 9rem !important;
+  }
+  
+
+  
+}

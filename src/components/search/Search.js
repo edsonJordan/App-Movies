@@ -26,7 +26,7 @@ export default function SearchMovie(nameGrid) {
 
         const redirection  = (param)  => (e) =>{        
             //redirection vers la page de detail
-            window.open(`/movie/${param}`, "_blank");
+            window.open(`/movie/${param}`, "_self");
     }
         return (
             <div className={style.SearchContent}>    

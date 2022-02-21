@@ -25,7 +25,7 @@
   align-items: center;
   justify-content: end;
   height: 100%;
-  row-gap: 3rem;
+  row-gap: 1rem;
   /* background-image: url("https://image.tmdb.org/t/p/w500/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg");
   background-size: cover;
   background-position: center; */
@@ -78,6 +78,16 @@
   }
 }
 
+/* .Container__grid__actor .Grid .GridContent .GridItem::hover{
+  min-height: 50%;
+ 
+  box-shadow: 0px 10px 20px 1px rgb(255 255 255 / 70%);
+  transform: scale(1.1);
+  transition: all 350ms ease-in;
+} */
+.Container__grid__actor{
+  display: none;
+}
 @media (min-width: 768px) { 
   .Container{
     width: 85%;
@@ -85,5 +95,36 @@
   .Full{
     padding-top: 0;
     width: 100%;
+    justify-content: center;
   }
+  .Container__grid__actor{
+    display: flex;
+    height: 15rem;
+    max-width: 90% !important;
+  }
+  .Container__grid__actor .Grid {
+    column-gap: .8rem;
+    height: 70% !important;
+  }
+}
+@media (min-width: 1024px) { 
+
+    .Full{
+      flex-direction: row;
+      height: 100%;
+    }
+    .Container__grid__actor{
+      max-width: 14% !important;
+      min-height: 30rem
+    }
+    .Container__grid__actor .Grid {
+      column-gap: 1rem;
+      height: 100% !important;
+      flex-direction: column;
+    }
+    
+    .Container__grid__actor div div{
+      flex-direction: column;
+    }
+  
 }

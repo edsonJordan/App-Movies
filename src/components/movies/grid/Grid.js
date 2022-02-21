@@ -1,36 +1,38 @@
 import React, {useState, useEffect} from "react";
+import { useNavigate   } from "react-router-dom";
+
 import style from './Grid.module.css';
 /* import react, {Fragment} from 'react';
 import reactDom from 'react-dom'; */
 export default function Grid({DataMovies, nameGrid}) {
   
-
+    const navigate = useNavigate();
+    
     const ApiKey = "7a09eb9887e18d1890ce1757dc8951b0";
     const [movies, setMovies] = useState([]);
     const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
+
+  
     
     const redirection  = (param, mediaType)  => (e) =>{        
         //redirection vers la page de detail
-
-       
        switch (true) {
            case mediaType === 'movie':
-            window.open(`/App-Movies/movie/${param}`, "_blank");
+             navigate(`/movie/${param}`);
                break;
             case mediaType === 'tv':
-            window.open(`/App-Movies/tv/${param}`, "_blank");
+             navigate(`/tv/${param}`);
                 break;
             case mediaType === 'tendencia':
-                window.open(`/App-Movies/movie/${param}`, "_blank");
+             navigate(`/movie/${param}`);
                 break;
             case mediaType === 'search':
-                window.open(`/App-Movies/movie/${param}`, "_blank");
+             navigate(`/movie/${param}`);
                 break;
            default:
                break;
        }
-        
 }
 
         return (
