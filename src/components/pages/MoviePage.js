@@ -36,27 +36,38 @@ export default function MoviePage() {
               el.addEventListener("wheel", onWheel);
               return () => el.removeEventListener("wheel", onWheel);
             }
-      
     }
 
-  
+    const redirect =(param)=> (e)=>{
+        e.preventDefault();
+    //window.location.href = param;
+    window.open(`https://www.youtube.com/watch?v=${param}`, '_blank');
+    }
   
 
 
     const [movie, setMovie] = useState([]);
     const [actors, setActors] = useState([]);
+    const [trailers, setTrailers] = useState([]);
+
     const keyApi ="7a09eb9887e18d1890ce1757dc8951b0";
     let {idMovie} = useParams();
-        const IMG = "https://image.tmdb.org/t/p/w500";
-    
-        //https://api.themoviedb.org/3/tv/{tv_id}?api_key=<<api_key>>&language=en-US
+        const IMG = "https://image.tmdb.org/t/p/w500/";
+
         useEffect(() => {
             fetch(`https://api.themoviedb.org/3/movie/${idMovie}?api_key=${keyApi}&language=es-ES`)
             .then(response => response.json())
             .then((data) => {
-                setMovie(data);
+                setMovie(data);              
+                fetch(`http://api.themoviedb.org/3/movie/${data.id}/videos?api_key=${keyApi}`)
+                .then(response => response.json())
+                .then((data) => {
+                    setTrailers(data.results);
+                })
+
             });
         }, [setMovie]);
+        
 
         useEffect(() => {
             fetch(`https://api.themoviedb.org/3/movie/${idMovie}/casts?api_key=${keyApi}`)
@@ -65,6 +76,7 @@ export default function MoviePage() {
                 setActors(data.cast);
             });
         }, [actors]);
+
 
         const styleContainer ={            
             backgroundImage: `url(${IMG}${ isTablet ? movie.backdrop_path : movie.poster_path})`,
@@ -103,26 +115,36 @@ export default function MoviePage() {
                                         }
                                     </div>
                                 </div>
+                                <div className={style.Trailers} >
+                                    <div className={style.Trailer__tittle} >
+                                        Trailers
+                                    </div>
+                                    <div className={style.Trailer__content} >
+                                        {
+                                            trailers !== undefined && trailers.map((trailer, index) => (
+                                                <div key={index+movie.id} className={style.Trailer__item} >
+                                                    
+                                                        <img onClick={redirect(trailer.key)} className={style.trailer__image} src="https://res.cloudinary.com/sunqupacha/image/upload/v1645474271/portafolio/AppCine/icons/trailer_jndbta.svg" /* src={`https://img.youtube.com/vi/${trailer.key}/0.jpg`} */ alt=""/>
+                                                    
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        {
-                            
+                        {                        
                                 <div ref={ useSideScrollActor()}  className={`${style.Container__movies} Container__grid__actor`}>
                                     <div className={styleGrid.Grid} >
                                         <div className={styleGrid.GridContent} >
                                             {
                                                 actors.map((actor, index) => (                                                
-                                                    <div attr-date={actor.character.split(' ').slice(0,2).join(' ') } className={`${styleGrid.GridItem} GridActor`} 
+                                                    <div attr-date={actor.character.split(' ').slice(0,1).join(' ') } className={`${styleGrid.GridItem} GridActor`} 
                                                         key={actor.id} >
                                                         <img className={styleGrid.GridImage} src={`${ actor.profile_path ? IMG + actor.profile_path : "https://via.placeholder.com/500x750" }`} />
                                                         <div className={styleGrid.GridDetails}>              
                                                             <div className={styleGrid.MovieDate}>
                                                                 <h3>{actor.name.split(' ').slice(0,2).join(' ') }</h3>                                            
-                                                                    <div>                                                                                            
-                                                                        <div className={styleGrid.star} >
-                                                                        </div>
-                                                                        
-                                                                    </div>
                                                             </div>                                      
                                                         </div>
                                                     </div>
@@ -131,8 +153,6 @@ export default function MoviePage() {
                                         </div>
                                     </div>  
                                 </div>                              
-                               
-
                         }
                         <div className={style.InfoMovie} >                           
                             <span>

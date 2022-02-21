@@ -22,13 +22,12 @@ export default function App() {
                    
                     <BrowserRouter basename="/App-Movies">
                       <Routes>
-                      
                         <Route path="/" element={<HomePage/>}  />
                         <Route path="/about" element={<AboutPage/>}  />
                         <Route path="/contact" element={<ContactPage/>}  />
                         <Route path="/movie/:idMovie" element={<MoviePage/>}  />
                         <Route path="/tv/:idTv" element={<TvPage/>}  />
-                        <Route path="*" element={<NotFoundPage/>}  />
+                        <Route path="*" element={<HomePage/>}  />
                       </Routes>
                     </BrowserRouter>   
                            
