@@ -169,6 +169,9 @@
     .SearchResult__content__movies__item__text p{
         width: 70%;
     }
+    .ImageSearch{
+        cursor: pointer;
+    }
 }
 @media (min-width: 1024px) { 
     .SearchResult__content__movies__item img{
